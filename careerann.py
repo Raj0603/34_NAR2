@@ -210,7 +210,7 @@ def build_ann():
     ann.add(tf.keras.layers.Dense(units=15, activation='relu'))
     ann.add(tf.keras.layers.Dense(units=15, activation='relu'))
     ann.add(tf.keras.layers.Dense(units=9, activation='softmax'))
-    ann.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics = ['accuracy'])
+    ann.compile(optimizer = 'rmsprop', loss = 'categorical_crossentropy', metrics = ['accuracy'])
     return ann
 
 ann = KerasClassifier(build_fn=build_ann,batch_size = 10, epochs = 100)
@@ -218,10 +218,6 @@ accuracies = cross_val_score(estimator=ann,X = X_train,y = y_train, cv = 10 , n_
 
 mean = accuracies.mean()
 variance = accuracies.std()
-
-
-
-#parameterized tuning using gridsearch
 
 
 
