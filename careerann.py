@@ -145,7 +145,7 @@ y = le_y.fit_transform(y)
 #dummy encoding
 onehotencoder = OneHotEncoder(categories='auto')
 y = onehotencoder.fit_transform(y.reshape(-1,1)).toarray()
-#dummy trap removal
+#dummy trap Removal
 y = y[:,1:]
 
 
@@ -154,12 +154,11 @@ y = y[:,1:]
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
-# Feature Scaling
+# Feature Scaling 
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
-
 
 
 
