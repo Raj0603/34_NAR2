@@ -14,17 +14,15 @@ import tensorflow as tf
 
 
 
-# Part 1 - Data Preprocessing
+# ---Data Preprocessing------
 
 # Importing the dataset
 dataset = pd.read_csv('data.csv')
-#dfn =dataset.astype('str').dtypes
-#dfn.astype({'CGPA': 'float64'}).dtypes
 
-#independent variable matrix upperbound is exclusive
+#independent variable matrix upperbound exclusive hota hai!!
 X = dataset.iloc[:, 0:19].values #pd illoc
 
-#taking care of missing data
+#taking care of missing data(nan)
 from sklearn.impute import SimpleImputer
 imputer = SimpleImputer(missing_values=np.nan, strategy='most_frequent')
 #fitting our imputer obj to data 
@@ -122,10 +120,7 @@ X[:, 18] = le_17.fit_transform(X[:, 18])
 
 
 
-
-
-
-#dummy encoding
+#dummy variable encoding
 ct = ColumnTransformer(
     [('one_hot_encoder', OneHotEncoder(categories='auto'), [3])],   # The column numbers to be transformed 
     remainder='passthrough'                                         # Leave the rest of the columns untouched
@@ -155,14 +150,16 @@ y = y[:,1:]
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
-# Feature Scaling
+# Feature Scaling 
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
 
+#--------end of data preprocessing--------------------
 
-# Part 2 - Building the ANN
+
+#----------------------------- Building the ANN----------------------
 
 # Initializing the ANN
 ann = tf.keras.models.Sequential()
@@ -170,18 +167,18 @@ ann = tf.keras.models.Sequential()
 # Adding the input layer and the first hidden layer
 ann.add(tf.keras.layers.Dense(units=15, activation='relu'))
 
-#adding dropout
-ann.add(tf.keras.layers.Dropout(.1))
+#adding dropout temp rahega
+#ann.add(tf.keras.layers.Dropout(.1))
 
 # Adding the second hidden layer
 ann.add(tf.keras.layers.Dense(units=15, activation='relu'))
-#ann.add(tf.keras.layers.Dropout(.1))
 
-# Adding the output layer
+# Adding the output layer 
+#softmx regression
 ann.add(tf.keras.layers.Dense(units=9, activation='softmax'))
 
 
-# Part 3 - Compiling the ANN
+# Compiling the ANN
 ann.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics = ['accuracy'])
 
 # Training the ANN on the Training set
@@ -197,9 +194,6 @@ y_pred = (y_pred >0.5)
 from sklearn.metrics import multilabel_confusion_matrix
 cm = multilabel_confusion_matrix(y_test,y_pred)
 
-
-# Predicting the result of a single observation
-#print(ann.predict(sc.transform([[12, 6, 0, 16, 0, 1, 78]])) > 0.5)
 
 single_pred = ann.predict(sc.transform([[0,0,7.5,1,1,1,0,0,1,0,1,1,0,0,0,0,1,0,1,1]]))
 
@@ -224,7 +218,11 @@ accuracies = cross_val_score(estimator=ann,X = X_train,y = y_train, cv = 10 , n_
 
 mean = accuracies.mean()
 variance = accuracies.std()
-    
+
+
+
+#parameterized tuning using gridsearch
+
 
 
 
