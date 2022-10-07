@@ -141,11 +141,12 @@ X = X[:,1:]
 #label encoding the dependent col
 le_y = LabelEncoder()
 y = le_y.fit_transform(y)
+y_bef = y
 
 #dummy encoding
 onehotencoder = OneHotEncoder(categories='auto')
 y = onehotencoder.fit_transform(y.reshape(-1,1)).toarray()
-#dummy trap Removal
+#dummy trap removal
 y = y[:,1:]
 
 
@@ -154,11 +155,76 @@ y = y[:,1:]
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
-# Feature Scaling 
+# Feature Scaling
 from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
+
+
+# Part 2 - Building the ANN
+
+# Initializing the ANN
+ann = tf.keras.models.Sequential()
+
+# Adding the input layer and the first hidden layer
+ann.add(tf.keras.layers.Dense(units=15, activation='relu'))
+
+#adding dropout
+ann.add(tf.keras.layers.Dropout(.1))
+
+# Adding the second hidden layer
+ann.add(tf.keras.layers.Dense(units=15, activation='relu'))
+#ann.add(tf.keras.layers.Dropout(.1))
+
+# Adding the output layer
+ann.add(tf.keras.layers.Dense(units=9, activation='softmax'))
+
+
+# Part 3 - Compiling the ANN
+ann.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics = ['accuracy'])
+
+# Training the ANN on the Training set
+ann.fit(X_train, y_train, batch_size = 10, epochs = 100)
+
+
+# Predicting the Test set results
+y_pred = ann.predict(X_test)
+y_pred = (y_pred >0.5)
+
+
+#making confusion matrix
+from sklearn.metrics import multilabel_confusion_matrix
+cm = multilabel_confusion_matrix(y_test,y_pred)
+
+
+# Predicting the result of a single observation
+#print(ann.predict(sc.transform([[12, 6, 0, 16, 0, 1, 78]])) > 0.5)
+
+single_pred = ann.predict(sc.transform([[0,0,7.5,1,1,1,0,0,1,0,1,1,0,0,0,0,1,0,1,1]]))
+
+single_pred = (single_pred > 0.2)
+
+
+
+#k-fold cross val
+
+from keras.wrappers.scikit_learn import KerasClassifier
+from sklearn.model_selection import cross_val_score
+def build_ann():
+    ann = tf.keras.models.Sequential()
+    ann.add(tf.keras.layers.Dense(units=15, activation='relu'))
+    ann.add(tf.keras.layers.Dense(units=15, activation='relu'))
+    ann.add(tf.keras.layers.Dense(units=9, activation='softmax'))
+    ann.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics = ['accuracy'])
+    return ann
+
+ann = KerasClassifier(build_fn=build_ann,batch_size = 10, epochs = 100)
+accuracies = cross_val_score(estimator=ann,X = X_train,y = y_train, cv = 10 , n_jobs = -1)
+
+mean = accuracies.mean()
+variance = accuracies.std()
+    
 
 
 
