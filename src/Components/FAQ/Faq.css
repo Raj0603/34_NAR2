@@ -1,0 +1,24 @@
+#bg{
+    background-image: url("../../assets/Form.svg");
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    position: absolute;
+}
+
+.faq-h1{
+    font-family: 'Quicksand', sans-serif;
+}
+
+#container {
+    margin: 5%;
+}
+
+#Questions {
+    margin: 2%;
+}
+
+.faq-h2 {
+    font-family: 'Quicksand', sans-serif;   
+}

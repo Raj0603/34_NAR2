@@ -1,0 +1,55 @@
+
+.home-login, .home-signup{
+    width: 7rem;
+    height: 2rem;
+    border-radius: 2rem;
+    margin-top:3rem;
+    float: right;
+    margin-right: 2rem;
+    border: 1px solid ;
+    box-shadow:
+      0 1px 1px hsl(0deg 0% 0% / 0.075),
+      0 2px 2px hsl(0deg 0% 0% / 0.075),
+      0 4px 4px hsl(0deg 0% 0% / 0.075),
+      0 8px 8px hsl(0deg 0% 0% / 0.075),
+      0 16px 16px hsl(0deg 0% 0% / 0.075)
+    ;
+    cursor: pointer;
+
+}
+
+.logo{
+    height: 10vmax;;
+    width: 10vmax;
+    margin-left: 5vw;
+    /* border-radius: 50%; */
+}
+
+.home-login:active, .home-signup:active{
+    transform: translateY(1px);
+}
+
+.home-login{
+    margin-right: 1rem;
+    color: darkslategray;
+}
+
+.home-signup{
+    background-color: darkslategray;
+    color: #ececec;
+}
+
+.home-navbar{
+    text-align: center;
+    margin-top: 5vh;
+}
+
+.home-nav-ele{
+    border-right: 2px solid darkslategray;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    margin: 3px;
+    padding: 3px;
+    text-decoration: none;
+    color: darkslategray;;
+}

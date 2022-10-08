@@ -1,0 +1,52 @@
+.homeContainer{
+    /* display: flex; */
+    /* flex-direction: column; */
+    position: absolute;
+    background-image: url("../../assets/home.svg");
+    background-repeat: no-repeat;
+    height: auto;
+    width: 100%;
+    /* background-size: cover; */
+}
+
+.home-career{
+    position: relative;
+    margin-top: 35vh;
+    width: 43%;
+    padding-left: 4rem;
+}
+
+.home-resume{
+    position: relative;
+    /* margin-top: 8vh; */
+    float: right;
+    width: 35%;
+    text-align: right;
+    padding: 2rem;
+}
+
+.home-footer{
+    /* position: relative; */
+    margin-top: 50vh;
+}
+
+.home-heading{
+    font-size: 2.5rem;
+    /* font-weight: 400; */
+}
+
+.home-info{
+    margin-top: 2.3rem;
+    font-size: 1.2rem;
+}
+
+.home-button{
+    margin-top: 3rem;
+    width: 7rem;
+    height: 3rem;
+    border-radius: 2rem;
+    font-size: larger;
+    background-color: rgba(193, 131, 245, 0.6);
+    
+}
+

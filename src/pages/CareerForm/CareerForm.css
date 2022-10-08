@@ -1,0 +1,100 @@
+.form-main{
+    background-image: url("../../assets/Form.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    min-height: 100%;
+    width: 100%;
+    background-size: cover;
+    /* align-items: center; */
+}
+
+.form-info{
+    font-size: large;
+    font-family: 'Quicksand', sans-serif;
+    /* margin: auto; */
+    margin-left: 30px;
+    margin-bottom: 2vh;
+    margin-top: 2vh;
+    padding: 10px;
+}
+
+.form-heading{
+    margin-left: 30px;
+    font-size: 3rem;
+    padding: 10px;
+}
+
+.form-container{
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    /* align-items: center; */
+    width: 50vw;
+    text-align: center;
+    margin: auto;
+    margin-top: 15vh;
+    background-color: rgba(193, 131, 245, 0.45);
+    box-shadow:
+      0 1px 1px hsl(0deg 0% 0% / 0.075),
+      0 2px 2px hsl(0deg 0% 0% / 0.075),
+      0 4px 4px hsl(0deg 0% 0% / 0.075),
+      0 8px 8px hsl(0deg 0% 0% / 0.075),
+      0 16px 16px hsl(0deg 0% 0% / 0.075)
+    ;
+    
+    /* border: 2px solid black; */
+    /* box-shadow: 5px 5px rgb(134, 123, 123) ; */
+}
+
+.form-row{
+    text-align: left;
+    padding: 20px;
+    /* margin-left: 30px; */
+    /* border: 2px solid green; */
+    width: 50%;
+}
+
+.dropdown{
+    width: 80%;
+    min-height: 47%;
+    margin: 20px;
+    cursor: pointer;
+    user-select: none;
+    padding: 10px;
+    text-align: center;
+}
+
+.form-col{
+    margin-top: 10px;
+    padding-left: 5px;
+}
+
+.form-button{
+    margin: 30vh;
+    margin-top: 15vh;
+    text-align: center;
+}
+
+.form-submit{
+    height: 3rem;
+    width: 8rem;
+    background-color: darkslategray;
+    font-size: large;
+    color: whitesmoke;
+    border-radius: 7px;
+    box-shadow:
+      0 1px 1px hsl(0deg 0% 0% / 0.075),
+      0 2px 2px hsl(0deg 0% 0% / 0.075),
+      0 4px 4px hsl(0deg 0% 0% / 0.075),
+      0 8px 8px hsl(0deg 0% 0% / 0.075),
+      0 16px 16px hsl(0deg 0% 0% / 0.075)
+    ;
+    cursor: pointer;
+    border: none;
+    
+}
+
+.form-button:active{
+    transform: translateY(1.5px);
+}
